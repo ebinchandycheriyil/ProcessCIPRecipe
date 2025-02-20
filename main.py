@@ -154,7 +154,7 @@ class MainUI(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle('macos')
-    app.setWindowIcon(QIcon('res/icon.ico'))
+    app.setWindowIcon(QIcon('assets/icon.ico'))
 
     ui = MainUI()
     ui.show()
