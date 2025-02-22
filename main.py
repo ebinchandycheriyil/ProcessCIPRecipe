@@ -49,8 +49,6 @@ class MainUI(QMainWindow):
         self.cktBSel_btn.clicked.connect(lambda: self.cktChangeEvent("B"))
 
 
-
-
     def programChangeEvent(self, programIndex):
         self.CurrentID=programIndex
         self.currentRecipeList = self.SqLite.getRecipeList(programIndex, self.cktSelection)
@@ -136,6 +134,10 @@ class MainUI(QMainWindow):
         for tKey in tKeys:
             value = self.SqLite.readRecipeValue(variableList[tKey].dbAddr, self.CurrentRecipeID)
             tArray.append((variableList[tKey].PLCAddr, value[0][0]))
+        if self.cktSelection == 'A' :
+            self.PLC.writeTag("Recepie_Name_A", self.recepieSelectCombox.currentText())
+        elif self.cktSelection == 'B' :
+            self.PLC.writeTag("Recepie_Name_B", self.recepieSelectCombox.currentText())
 
         self.PLC.writeList(spArray)
         self.PLC.writeList(tArray)
